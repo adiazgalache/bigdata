@@ -12,8 +12,9 @@
 
 ```bash
 $ sudo apt-get install python-pip
-$ sudo pip install pyYAML six ant psutil
 $ sudo pip install --upgrade pip
+$ sudo pip install pyYAML six ant psutil
+$ sudo pip install ccm
 ```
 
 ### Exercise 1: First Operations
@@ -42,6 +43,12 @@ Node cluster status
 
 ```bash
 $ sudo ccm node1 show
+```
+
+**_Start Cluster_**
+
+```bash
+$ sudo ccm start
 ```
 
 **_Connect CQL_**
