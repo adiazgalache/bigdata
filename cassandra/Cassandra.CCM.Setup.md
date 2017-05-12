@@ -18,13 +18,13 @@ $ sudo pip install --upgrade pip
 
 ### Exercise 1: First Operations
 
-##### Create Cluster Cassandra
+**_Create Cluster Cassandra_**
 
 ```bash
 $ sudo ccm create cluster_cassandra -v 2.2.9 -n 3
 ```
 
-##### Show Status Cluster
+**_Show Status Cluster_**
 
 Cluster list
 
@@ -44,7 +44,7 @@ Node cluster status
 $ sudo ccm node1 show
 ```
 
-##### Connect CQL
+**_Connect CQL_**
 
 ```bash
 $ sudo ccm node1 cqlsh
@@ -54,7 +54,7 @@ $ sudo ccm node1 cqlsh
 
 Inside CQL console...
 
-##### Create Keyspace
+**_Create Keyspace_**
 
 With Replication Factor 1
 
@@ -74,7 +74,7 @@ Show keyspaces
 DESC KEYSPACES;
 ```
 
-##### Create a Column Families
+**_Create a Column Families_**
 
 ```sql
 CREATE TABLE IF NOT EXISTS DB_TEST.SENSOR (
@@ -96,15 +96,15 @@ Show Column Families
 DESC COLUMNFAMILIES;
 ```
 
-##### Insert a row
+**_Insert a row_**
 
-**_Case 1_**
+_Case 1_
 
 ```sql
 INSERT INTO DB_TEST.SENSOR (sensor_id, sensor_name, ts) VALUES (1,'air polution',dateof(now()));
 ```
 
-**_Case 2_**
+_Case 2_
 
 ```sql
 BEGIN BATCH
@@ -113,9 +113,9 @@ INSERT INTO DB_TEST_RF.SENSOR (sensor_id, sensor_name, ts) VALUES (999,'air flow
 APPLY BATCH;
 ```
 
-##### Verify
+**_Verify_**
 
-**_Case 1_**
+_Case 1_
 
 ```sql
 SELECT sensor_id, token(sensor_id) FROM DB_TEST.SENSOR;
@@ -130,19 +130,19 @@ SELECT JSON sensor_id, token(sensor_id) FROM DB_TEST.SENSOR;
 
 ![CQL Token](img/ccm_2.png)
 
-**_Case 2_**
+_Case 2_
 
 SELECT sensor_id, token(sensor_id) FROM DB_TEST_RF.SENSOR;
 
 ![CQL Token](img/ccm_3.png)
 
-**Questions**
+_Questions_
 
 - What is the coordinator node?
 - How many copies are there?
 - Where are the originals and copies?
 
-**Solution**
+_Solution_
 
 In other ssh session, launch:
 
@@ -153,7 +153,7 @@ sudo ccm node1 nodetool getendpoints db_test_rf sensor 999;
 
 ### Exercise 3: Fail Over
 
-##### Calcule token
+**_Calcule token_**
 
 We use sensor_id = 2. Discover the associated token:
 
@@ -161,13 +161,13 @@ We use sensor_id = 2. Discover the associated token:
 $ sudo ccm node1 nodetool getendpoints db_test_rf sensor 2;
 ```
 
-##### Shutdown the node
+**_Shutdown the node_**
 
 ```bash
 $ sudo ccm node2 stop
 ```
 
-##### Insert Row
+**_Insert Row_**
 
 Connect to CQL node1
 
@@ -183,7 +183,7 @@ INSERT INTO DB_TEST_RF.SENSOR (sensor_id, sensor_name, ts) VALUES (2,'speed sens
 SELECT * FROM DB_TEST_RF.SENSOR;
 ```
 
-##### Verify hints table for the fallen node
+**_Verify hints table for the fallen node_**
 
 ```sql
 SELECT * FROM system.hints;
@@ -192,13 +192,13 @@ SELECT * FROM system.hints;
 ![CQL Hints Table](img/ccm_4.png)
 
 
-##### Start the node
+**_Start the node_**
 
 ```bash
 $ sudo ccm node2 start
 ```
 
-##### Check again hints table
+**_Check again hints table_**
 
 ```sql
 SELECT * FROM system.hints;
