@@ -104,7 +104,7 @@ DESC COLUMNFAMILIES;
 INSERT INTO DB_TEST.SENSOR (sensor_id, sensor_name, ts) VALUES (1,'air polution',dateof(now()));
 ```
 
-**Case 2**
+**_Case 2_**
 
 ```sql
 BEGIN BATCH
@@ -115,7 +115,7 @@ APPLY BATCH;
 
 ##### Verify
 
-**Case 1**
+**_Case 1_**
 
 ```sql
 SELECT sensor_id, token(sensor_id) FROM DB_TEST.SENSOR;
@@ -130,7 +130,7 @@ SELECT JSON sensor_id, token(sensor_id) FROM DB_TEST.SENSOR;
 
 ![CQL Token](img/ccm_2.png)
 
-**Case 2**
+**_Case 2_**
 
 SELECT sensor_id, token(sensor_id) FROM DB_TEST_RF.SENSOR;
 
