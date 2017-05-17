@@ -32,9 +32,9 @@ $ sudo cp -avr /dfs/dn /data/dfs/dn
 7. CDH: Start HDFS Service
 
 
-### Problem With Block missing
+### Problem with block missing
 
-Maybe in HDFS status summary in CDH, you see the an alert about missing blocks and underreplicated blocks. To fix:
+After the previous operations, maybe in HDFS status summary in CDH, you see the an alert about missing blocks and underreplicated blocks. To fix:
 
 ```bash
 $ sudo su hdfs
