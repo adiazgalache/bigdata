@@ -2,14 +2,14 @@
 
 ### Caveats
 
-This guide is made in an operating system **Ubuntu 16.04.2 LTS (Xenial)**
+This guide is based on operating system **Ubuntu 16.04.2 LTS (Xenial)**
 
 ### Prerequisites
 
 - Python 2.7 >
 - Latest version of Oracle Java Platform, Standard Edition 8 (JDK) or OpenJDK 8.
 
-### Install JDK (If not installed)
+### Install JDK (if it isn't installed)
 
 ```bash
 $ echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
