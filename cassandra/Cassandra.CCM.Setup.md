@@ -139,7 +139,9 @@ SELECT JSON sensor_id, token(sensor_id) FROM DB_TEST.SENSOR;
 
 _Case 2_
 
+```
 SELECT sensor_id, token(sensor_id) FROM DB_TEST_RF.SENSOR;
+```
 
 ![CQL Token](img/ccm_3.png)
 
